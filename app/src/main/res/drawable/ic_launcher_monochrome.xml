@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive icon — monochrome layer (Android 13+ themed icons).
+
+  Just 五. The frame, keys and dot are decoration that the launcher would flatten into an
+  unreadable blob once it tinted the layer.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:pathData="M22.12 44.46V54.98H38.35C36.65 63.54 34.87 71.84 33.09 79.06H14V89.67H94V79.06H80V44.46H52.17L55.03 28.85H88.11V18.33H19.17V28.85H42.99C42.18 33.93 41.29 39.2 40.31 44.46ZM45.04 79.06C46.64 71.93 48.43 63.63 50.12 54.98H68.85V79.06Z" android:fillColor="#FFFFFFFF" />
+</vector>

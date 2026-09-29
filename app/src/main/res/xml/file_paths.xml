@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- progress.tsv copies handed to a share sheet (设置 → 导出进度). -->
+    <files-path name="progress" path="." />
+    <external-files-path name="export" path="export/" />
+</paths>

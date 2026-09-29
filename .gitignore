@@ -1,0 +1,18 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/app/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/tools/sources/
+
+# Signing material — never commit these. Losing the keystore means you can no longer update an
+# installed copy of the app (Android refuses an update signed with a different key).
+*.keystore
+*.jks
+keystore.properties

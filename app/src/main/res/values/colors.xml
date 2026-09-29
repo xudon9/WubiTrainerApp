@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Window background, used for the frame before Compose has drawn anything (cold start,
+         and the recents thumbnail). It matches WubiTheme's `background` colour in each mode, so
+         there is never a white flash before a dark screen. -->
+    <color name="window_background">#FFF7F5F0</color>
+</resources>

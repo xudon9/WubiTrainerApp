@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The launcher icon. minSdk is 30, so EVERY installable device supports adaptive icons — there is
+  no need for per-density PNG fallbacks, and this one file covers all of them.
+
+  The three layers are separate drawables rather than one flattened image: the launcher composites
+  them, which is what lets it mask any shape and tint the monochrome layer for themed icons.
+-->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background" />
+    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+    <monochrome android:drawable="@drawable/ic_launcher_monochrome" />
+</adaptive-icon>

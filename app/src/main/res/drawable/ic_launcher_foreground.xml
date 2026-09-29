@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive icon — foreground layer.
+
+  A light key-cap frame holding four blue keys, a small orange indicator dot, and 五 in
+  white across them.
+
+  五 is not hand-drawn. Traced from NotoSansCJK-Bold.ttc, so it is the character rather
+  than an approximation of it. Regenerate with: python3 tools/make_icon.py
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Frame, then the recessed panel the keys sit in. -->
+    <path
+        android:pathData="M33,24 L75,24 A9,9 0 0 1 84,33 L84,75 A9,9 0 0 1 75,84 L33,84 A9,9 0 0 1 24,75 L24,33 A9,9 0 0 1 33,24 Z"
+        android:fillColor="#A8E7EE" />
+    <path
+        android:pathData="M36,29 L72,29 A6,6 0 0 1 78,35 L78,73 A6,6 0 0 1 72,79 L36,79 A6,6 0 0 1 30,73 L30,35 A6,6 0 0 1 36,29 Z"
+        android:fillColor="#256E86" />
+
+    <!-- Four blue keys. -->
+    <path android:pathData="M32,28 L49,28 A4,4 0 0 1 53,32 L53,49 A4,4 0 0 1 49,53 L32,53 A4,4 0 0 1 28,49 L28,32 A4,4 0 0 1 32,28 Z" android:fillColor="#5CC4E8" />
+    <path android:pathData="M59,28 L76,28 A4,4 0 0 1 80,32 L80,49 A4,4 0 0 1 76,53 L59,53 A4,4 0 0 1 55,49 L55,32 A4,4 0 0 1 59,28 Z" android:fillColor="#4BB2DC" />
+    <path android:pathData="M32,55 L49,55 A4,4 0 0 1 53,59 L53,76 A4,4 0 0 1 49,80 L32,80 A4,4 0 0 1 28,76 L28,59 A4,4 0 0 1 32,55 Z" android:fillColor="#4BB2DC" />
+    <path android:pathData="M59,55 L76,55 A4,4 0 0 1 80,59 L80,76 A4,4 0 0 1 76,80 L59,80 A4,4 0 0 1 55,76 L55,59 A4,4 0 0 1 59,55 Z" android:fillColor="#5CC4E8" />
+
+    <!-- Indicator, with a halo so it still reads at 48 dp. -->
+    <path android:pathData="M71,36 m-6.5,0 a6.5,6.5 0 1,0 13,0 a6.5,6.5 0 1,0 -13,0" android:fillColor="#40FF8C1A" />
+    <path android:pathData="M71,36 m-3.4,0 a3.4,3.4 0 1,0 6.8,0 a3.4,3.4 0 1,0 -6.8,0" android:fillColor="#FFFF8C1A" />
+
+    <!-- 五: a shadow pass, then the white pass on top. -->
+    <group android:translateY="1.5">
+        <path android:pathData="M38.06 56.23V61.49H46.17C45.33 65.77 44.43 69.92 43.54 73.53H34V78.84H74V73.53H67V56.23H53.09L54.51 48.42H71.06V43.16H36.59V48.42H48.49C48.09 50.97 47.65 53.6 47.15 56.23ZM49.52 73.53C50.32 69.96 51.21 65.82 52.06 61.49H61.42V73.53Z" android:fillColor="#590A3A48" />
+    </group>
+    <path android:pathData="M38.06 56.23V61.49H46.17C45.33 65.77 44.43 69.92 43.54 73.53H34V78.84H74V73.53H67V56.23H53.09L54.51 48.42H71.06V43.16H36.59V48.42H48.49C48.09 50.97 47.65 53.6 47.15 56.23ZM49.52 73.53C50.32 69.96 51.21 65.82 52.06 61.49H61.42V73.53Z" android:fillColor="#FFFFFFFF" />
+</vector>

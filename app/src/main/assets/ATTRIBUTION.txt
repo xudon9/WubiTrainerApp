@@ -1,0 +1,28 @@
+WubiTrainer (五笔练习) — data attribution
+==========================================
+
+Wubi86 encoding table
+---------------------
+rime-wubi / wubi86.dict.yaml
+    https://github.com/rime/rime-wubi
+    License: GPL-3.0
+    Authors credited in the source file: Gong Chen <chen.sst@gmail.com>,
+    Yu Yuwei <acevery@gmail.com>, Chen Xing <cxcxcxcx@gmail.com>, and the
+    original JidianWubi table author Wozy <wozy.in@gmail.com>.
+    Only the single-character entries are used; the dictionary's word entries
+    are discarded. Codes are reproduced verbatim.
+
+Character frequency lists
+-------------------------
+Jun Da (笪骏) — Modern Chinese character frequency list, and the site's default
+character frequency list.
+    https://lingua.mtsu.edu/chinese-computing/
+    Used under the terms stated on that page; the lists are redistributed here
+    only as derived frequency ranks inside a derived work.
+
+External explanation pages
+--------------------------
+The ';' shortcut opens
+    https://hantang.github.io/search-wubi/?char=<character>
+in the system browser. That page is fetched by the browser under its own terms;
+WubiTrainer itself makes no network requests and holds no INTERNET permission.

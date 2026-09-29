@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive icon — background layer.
+
+  A teal gradient matching the reference artwork: lighter at the top-left, deepening toward the
+  bottom-right. Full bleed (108x108); the launcher masks whatever shape it likes out of this.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <path android:pathData="M0,0h108v108h-108z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="18"
+                android:startY="8"
+                android:endX="92"
+                android:endY="104">
+                <item android:offset="0" android:color="#FF38A9BD" />
+                <item android:offset="0.55" android:color="#FF1C7E96" />
+                <item android:offset="1" android:color="#FF0B4E64" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- A soft highlight in the upper-left corner, as in the reference. -->
+    <path android:pathData="M0,0h108v108h-108z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="26"
+                android:centerY="18"
+                android:gradientRadius="70">
+                <item android:offset="0" android:color="#33FFFFFF" />
+                <item android:offset="1" android:color="#00FFFFFF" />
+            </gradient>
+        </aapt:attr>
+    </path>
+</vector>

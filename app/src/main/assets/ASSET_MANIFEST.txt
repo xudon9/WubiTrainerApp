@@ -1,0 +1,24 @@
+WubiTrainer asset manifest
+generated: 2026-09-29T15:42:10
+
+sources
+  wubi86.dict.yaml
+    url    : https://raw.githubusercontent.com/rime/rime-wubi/master/wubi86.dict.yaml
+    bytes  : 2289545
+    sha256 : f833d86b72341fe82e069a425b6625f29ef85f1bc0f34f6fb7975fe514888b5a
+  freq_modern.html
+    url    : https://lingua.mtsu.edu/chinese-computing/statistics/char/list.php?Which=MO
+    bytes  : 514543
+    sha256 : de1207fcb7a3b8b5512cbdbd0a524aeaa5a4093b20f4ad6fc447bef58da6220d
+  freq_overall.html
+    url    : https://lingua.mtsu.edu/chinese-computing/statistics/char/list.php
+    bytes  : 557520
+    sha256 : 0d65c1e989477a5b7a987a7a7980f5d8d8b5f2d1f8783c23ac129743cad931b6
+
+derived
+  single-character entries : 75696
+  word entries (discarded) : 61220
+  wubi_full.tsv rows       : 70944
+  wubi_chars.tsv rows      : 12041
+  characters with >1 code  : 4445
+  codes containing 'z'     : 662

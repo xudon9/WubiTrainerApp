@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Night counterparts. Keeping these in sync with WubiTheme is what stops the launch frame
+         (and the recents thumbnail) from being a white rectangle in dark mode. -->
+    <color name="window_background">#FF12181B</color>
+</resources>
