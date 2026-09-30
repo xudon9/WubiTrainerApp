@@ -37,11 +37,11 @@ jobs:
   apk:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # JDK 25 is what this project is actually built and tested with locally (Android Studio's
       # bundled JBR), so CI runs the toolchain that is known to work rather than a lookalike.
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '25'
@@ -101,7 +101,7 @@ jobs:
       # A workflow_dispatch run publishes nothing, so park the APK where it can still be inspected.
       - name: Keep the APK as a run artifact (dry run only)
         if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: app-release-apk
           path: app/build/outputs/apk/release/app-release.apk
