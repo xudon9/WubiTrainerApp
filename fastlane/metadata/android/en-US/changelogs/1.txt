@@ -1,0 +1,9 @@
+First release.
+
+* Offline single-character Wubi86 drill, sampled by character frequency
+* Answers hidden by default; press z to reveal every code the character has
+* Wrong answers show a correction card labelled 一级/二级/三级/全码
+* A character passes after N independent correct answers; optional full-code-only strict mode
+* 错题集 for everything you get wrong, drivable on its own
+* Light and dark themes, following the system setting
+* Progress kept in a plain-text TSV you can read and back up

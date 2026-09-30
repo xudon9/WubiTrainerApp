@@ -185,12 +185,14 @@ docs/PRD.md                   完整的产品需求文档
 docs/DEVELOPER.md             面向开发者的架构文档（英文）
 tools/build_assets.py         资产流水线
 tools/make_icon.py            启动图标生成器
+tools/make_store_icon.py      图标 PNG 生成器（供应用商店元数据使用）
 ```
 
 引擎刻意不依赖 Android，因此每条通过/错误规则都由纯 JVM 测试验证。
 
 ### 许可与致谢
 
+- 本应用以 **GPL-3.0** 发布，完整条款见 [`LICENSE`](LICENSE)。分发的 APK 内含 GPL-3.0 的 rime-wubi 编码表，因此整体按其中较严格的许可证适用。
 - 五笔86编码表：[`rime-wubi`](https://github.com/rime/rime-wubi) —— GPL-3.0。源码文件中署名的作者：Gong Chen、Yu Yuwei、Chen Xing，以及 Wozy（最初的极点五笔表）。
 - 汉字字频表：笪骏（Jun Da）—— <https://lingua.mtsu.edu/chinese-computing/>。
 - `;` 快捷键会在浏览器中打开 <https://hantang.github.io/search-wubi/>，该页面由你的浏览器按其自身条款获取。WubiTrainer 本身不发起任何网络请求。
@@ -404,6 +406,7 @@ docs/PRD.md                   the full product requirements document
 docs/DEVELOPER.md             the developer / architecture guide
 tools/build_assets.py         the asset pipeline
 tools/make_icon.py            the launcher-icon generator
+tools/make_store_icon.py      the store-icon PNG generator (for F-Droid metadata)
 ```
 
 The engine deliberately has no Android dependency, so every pass/mistake rule is verified by plain
@@ -411,6 +414,9 @@ JVM tests.
 
 ### Licence and credits
 
+- WubiTrainer itself is released under the **GPL-3.0** — the full text is in
+  [`LICENSE`](LICENSE). The distributed APK bundles the GPL-3.0 rime-wubi encoding table, so the
+  stricter of the two licences governs the app as a whole.
 - Wubi86 encoding table: [`rime-wubi`](https://github.com/rime/rime-wubi) — GPL-3.0. Authors credited
   in the source file: Gong Chen, Yu Yuwei, Chen Xing, and Wozy (original JidianWubi table).
 - Character frequency lists: Jun Da (笪骏) — <https://lingua.mtsu.edu/chinese-computing/>.

@@ -1,0 +1,27 @@
+WubiTrainer is an offline drill for typing single Chinese characters with Wubi86 (五笔字型) codes.
+
+You are shown one character. You type its Wubi code. The app decides whether that answer passes the character. There is no account, no network and no permissions — progress lives in a plain-text TSV file you can read, copy and back up yourself.
+
+FEATURES
+
+* Sampled by character frequency — characters come from the Jun Da frequency list rather than a uniform draw, so you practise the characters you will actually meet. The default pool is the first 3000 characters of the modern-Chinese list, which covers 99.2% of real text.
+
+* Answers hidden by default — press z (or the eye key) to reveal the codes.
+
+* Correction, not just a penalty — a wrong answer immediately shows a card listing every code the character has, each labelled 一级简码 / 二级简码 / 三级简码 / 全码, and waits for you to acknowledge it.
+
+* Passing by independent repetition — a character passes after N correct answers across N separate presentations (default 2). Any mistake before that resets the count. Once passed, it stays passed and stops appearing.
+
+* Full-code-only mode — an optional strict mode in which only the longest code counts, so 工 needs aaaa and a or aaa are wrong.
+
+* 错题集 (mistake list) — every wrong answer goes in. A character leaves it after K correct answers (default 3), or as soon as it passes. You can also add characters by hand and drill only the mistake list.
+
+* Explain any character — press ; to open that character's search-wubi page in your browser.
+
+* Progress is never lost — progress.tsv is written to a temporary file, fsynced, then atomically renamed, with the previous version kept as a backup.
+
+* Light and dark themes, following the system setting. Every semantic colour is checked against its background for 4.5:1 contrast by a unit test rather than by eye.
+
+The drill is driven by an on-screen keypad, so the system keyboard — and therefore a Chinese IME — is never involved while you practise.
+
+Requires Android 11 or newer. Small, no ads, no tracking, no analytics, and no network requests at all: the only outbound surface is the explicit browser intent behind the ; key, and the app holds no INTERNET permission to back it with.
