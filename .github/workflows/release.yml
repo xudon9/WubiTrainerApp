@@ -1,0 +1,108 @@
+# Publish a signed release APK to GitHub Releases.
+#
+# The trigger is deliberate: pushing a `v*` tag IS the release gesture, and nothing else publishes.
+# `workflow_dispatch` runs the identical build but stops short of creating a Release, so the whole
+# pipeline can be proved on a branch before any tag exists.
+#
+# Why signing is verified explicitly: `app/build.gradle.kts` wires the signing config in
+# conditionally, so a build with no keystore still SUCCEEDS -- it simply emits an unsigned APK.
+# That is the right behaviour for a fresh clone, and exactly the wrong behaviour for a release job,
+# because it would publish a file no device can install. The `apksigner verify` step turns that
+# silent success into a red build, before anything is uploaded.
+#
+# The asset name is deliberately fixed (`app-release.apk`) instead of versioned. That is what makes
+# the permalink work, and it is the link the README points users at:
+#
+#   https://github.com/xudon9/WubiTrainerApp/releases/latest/download/app-release.apk
+#
+# A versioned file name would force the README to be edited on every release.
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   RELEASE_KEYSTORE_B64   base64 of wubitrainer-release.jks
+#   RELEASE_STORE_PASSWORD storePassword from keystore.properties
+#   RELEASE_KEY_ALIAS      keyAlias from keystore.properties
+#   RELEASE_KEY_PASSWORD   keyPassword from keystore.properties
+
+name: release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write # create the Release and upload its asset
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # JDK 25 is what this project is actually built and tested with locally (Android Studio's
+      # bundled JBR), so CI runs the toolchain that is known to work rather than a lookalike.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      # Secrets are passed through `env` and referenced as shell variables rather than interpolated
+      # into the script text, so a value containing shell metacharacters cannot alter the command.
+      - name: Restore the release keystore
+        env:
+          KEYSTORE_B64: ${{ secrets.RELEASE_KEYSTORE_B64 }}
+          STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          for v in KEYSTORE_B64 STORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
+            if [ -z "${!v}" ]; then
+              echo "::error::secret $v is not set - refusing to build an unsigned release APK"
+              exit 1
+            fi
+          done
+          printf '%s' "$KEYSTORE_B64" | tr -d '\n' | base64 -d > "$RUNNER_TEMP/release.jks"
+          printf 'storeFile=%s\nstorePassword=%s\nkeyAlias=%s\nkeyPassword=%s\n' \
+            "$RUNNER_TEMP/release.jks" "$STORE_PASSWORD" "$KEY_ALIAS" "$KEY_PASSWORD" \
+            > keystore.properties
+          chmod 600 keystore.properties "$RUNNER_TEMP/release.jks"
+
+      # `scripts/build.sh` supplies JAVA_HOME when it is missing; on a runner setup-java already
+      # set it, which is what that helper checks for.
+      - name: Unit tests
+        run: ./scripts/build.sh :app:testDebugUnitTest
+
+      - name: Build the signed release APK
+        run: ./scripts/build.sh :app:assembleRelease
+
+      - name: Verify the APK is signed
+        run: |
+          set -euo pipefail
+          APK=app/build/outputs/apk/release/app-release.apk
+          test -f "$APK" || { echo "::error::$APK was not produced"; exit 1; }
+          SDK="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+          SIGNER=$(ls -1 "$SDK"/build-tools/*/apksigner 2>/dev/null | sort -V | tail -1)
+          test -n "$SIGNER" || { echo "::error::no apksigner under $SDK/build-tools"; exit 1; }
+          # Non-zero for an unsigned or malformed APK, which is the whole point of this step.
+          "$SIGNER" verify --verbose --print-certs "$APK"
+
+      - name: Publish the GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh release create "$GITHUB_REF_NAME" \
+            app/build/outputs/apk/release/app-release.apk \
+            --title "五笔练习 $GITHUB_REF_NAME" \
+            --generate-notes
+
+      # A workflow_dispatch run publishes nothing, so park the APK where it can still be inspected.
+      - name: Keep the APK as a run artifact (dry run only)
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-apk
+          path: app/build/outputs/apk/release/app-release.apk
+          retention-days: 7
